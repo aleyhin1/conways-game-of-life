@@ -6,32 +6,23 @@ public class GridPresenter : MonoBehaviour
 {
     [SerializeField] private List<ColorSO> _colors;
     [SerializeField] private GameObject _model;
-    [SerializeField] private GridSpawner _spawner;
     [SerializeField] private Material _material;
+    [SerializeField] private GridDataSO _data;
     private static readonly int _gridID = Shader.PropertyToID("_GridBuffer");
     private static readonly int _resolutionID = Shader.PropertyToID("_Resolution");
     private static readonly int _colorsID = Shader.PropertyToID("_Colors");
     private ComputeBuffer _colorBuffer;
 
-    private void OnEnable()
+    private void Start()
     {
         ResizeModelFullScreen();
         SetInitialProperties();
     }
 
-    private void Start()
-    {
-        SetBuffer(_spawner.GridBuffer);
-    }
-
-    public void SetBuffer(ComputeBuffer buffer)
-    {
-        _material.SetBuffer(_gridID, buffer);
-    }
-
     private void SetInitialProperties()
     {
-        _material.SetVector(_resolutionID, new Vector4(_spawner.Resolution.x, _spawner.Resolution.y, 0, 0));
+        _material.SetVector(_resolutionID, new Vector4(_data.Data.Resolution.x, _data.Data.Resolution.y, 0, 0));
+        _material.SetBuffer(_gridID, _data.Data.GridBuffer);
         SetColorBuffer(0);
     }
 

@@ -130,6 +130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _colors:
   - {fileID: 11400000, guid: a2023b6937afee54a84dc7b88c08b81c, type: 2}
+  - {fileID: 11400000, guid: 628442f15643a7b429c431bee7927344, type: 2}
   _model: {fileID: 6602055370285682959}
-  _spawner: {fileID: 0}
   _material: {fileID: 2100000, guid: b978473050c7b144795329b05e43b473, type: 2}
+  _data: {fileID: 11400000, guid: 734abe3340eb73940aab1efe049db740, type: 2}

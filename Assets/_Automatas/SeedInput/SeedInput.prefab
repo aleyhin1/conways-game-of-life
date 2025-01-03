@@ -44,9 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a156f05a810f0ca4ea5f23f3d560707c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawner: {fileID: 0}
-  _presenter: {fileID: 0}
-  _logic: {fileID: 0}
   _inputCompute: {fileID: 7200000, guid: 0f5f9a01a9568014a969761424c3c250, type: 3}
   _initialStateCompute: {fileID: 7200000, guid: 1796fbcb20c7a0846a3b6d8e7e1295f9,
     type: 3}
+  _data: {fileID: 11400000, guid: 734abe3340eb73940aab1efe049db740, type: 2}

@@ -44,7 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab152ab4ce476dc45b511fa38b3e83f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Resolution>k__BackingField:
+  _resolution:
     x: 128
     y: 72
-  _checkerShader: {fileID: 7200000, guid: 5c6def12856955244a9118336448ac46, type: 3}
+  _data: {fileID: 11400000, guid: 734abe3340eb73940aab1efe049db740, type: 2}
+  _checkerCompute: {fileID: 7200000, guid: 5c6def12856955244a9118336448ac46, type: 3}
