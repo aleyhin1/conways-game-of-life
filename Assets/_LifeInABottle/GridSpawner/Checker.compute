@@ -1,0 +1,24 @@
+#pragma kernel FunctionKernel
+
+RWStructuredBuffer<uint> _Grid;
+uint2 _Resolution;
+
+uint GetType(uint3 id)
+{
+    bool isAlive = (id.x + id.y) % 2 == 0;
+    return lerp(0, 1, isAlive);
+}
+
+void SetType(uint3 id, uint type)
+{
+    _Grid[id.x + id.y * _Resolution.x] = type;
+}
+
+[numthreads(8,8,1)]
+void FunctionKernel (uint3 id : SV_DispatchThreadID)
+{
+    if (id.x >= _Resolution.x || id.y >= _Resolution.y) return;
+    
+    uint type = GetType(id);
+    SetType(id, type);
+}

@@ -1,0 +1,34 @@
+#pragma kernel CSMain
+
+RWStructuredBuffer<uint> _Grid;
+uint2 _Resolution;
+uint2 _HighlightIndex;
+int2 _SelectedIndex;
+
+uint GetCheckerType(uint3 id)
+{
+    bool isAlive = (id.x + id.y) % 2 == 0;
+    return lerp(0, 1, isAlive);
+}
+
+void SetType(uint flatIndex, uint type)
+{
+    _Grid[flatIndex] = type;
+}
+
+[numthreads(8,8,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    if (id.x >= _Resolution.x || id.y >= _Resolution.y) return;
+    
+    int flatIndex = id.x + id.y * _Resolution.x;
+    
+    bool isSomethingSelected = (int) _SelectedIndex.x >= 0 && (int) _SelectedIndex.y >= 0;
+    bool isSelectedIndex = (isSomethingSelected) && ((uint)_SelectedIndex.x == id.x && (uint)_SelectedIndex.y == id.y);
+    bool wasSeed = _Grid[flatIndex] == 3;
+    bool isSeed = isSelectedIndex ^ wasSeed;
+    
+    bool isHighlightIndex = id.x == _HighlightIndex.x && id.y == _HighlightIndex.y;
+    uint type = lerp(lerp(GetCheckerType(id), 2, isHighlightIndex), 3, isSeed);
+    SetType(flatIndex, type);
+}

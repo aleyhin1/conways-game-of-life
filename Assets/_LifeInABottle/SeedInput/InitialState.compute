@@ -1,0 +1,17 @@
+#pragma kernel InitialState
+
+RWStructuredBuffer<uint> _Grid;
+uint2 _Resolution;
+
+
+[numthreads(8,8,1)]
+void InitialState (uint3 id : SV_DispatchThreadID)
+{
+    if (id.x >= _Resolution.x || id.y >= _Resolution.y) return;
+    
+    int flatIndex = id.x + id.y * _Resolution.x;
+    
+    bool isAlive = _Grid[flatIndex] == 3;
+    
+    _Grid[flatIndex] = (uint)isAlive;
+}
