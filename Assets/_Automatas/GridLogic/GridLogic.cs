@@ -75,7 +75,7 @@ public class GridLogic : MonoBehaviour
 
     private void DisposeComputeData()
     {
-        _previousGrid.Dispose();
+        _previousGrid?.Dispose();
         _previousGrid = null;
     }
 

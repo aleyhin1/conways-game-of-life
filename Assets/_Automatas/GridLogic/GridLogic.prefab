@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _type: 0
-  _tickTime: 0.25
+  _tickTime: 1
   _computes:
   - {fileID: 7200000, guid: e7eee16b439ac1341b6aaac3e4888596, type: 3}
   _copyCompute: {fileID: 7200000, guid: afc2ed1fd667ae246af66d55527114b7, type: 3}

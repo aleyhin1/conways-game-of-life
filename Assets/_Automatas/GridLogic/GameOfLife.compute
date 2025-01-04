@@ -4,9 +4,19 @@ RWStructuredBuffer<uint> _Grid;
 StructuredBuffer<uint> _PreviousGrid;
 uint2 _Resolution;
 
+uint GetFlatIndex(uint3 id)
+{
+    return id.x + id.y * _Resolution.x;
+}
+
 uint GetType(int flatIndex)
 {
     return _PreviousGrid[flatIndex];
+}
+
+uint GetType(uint3 id)
+{
+    return _PreviousGrid[GetFlatIndex(id)];
 }
 
 void SetType(int flatIndex, uint type)
@@ -14,12 +24,40 @@ void SetType(int flatIndex, uint type)
     _Grid[flatIndex] = type;
 }
 
+uint GetAliveNeighbourCount(uint3 id)
+{
+    uint count = 0;
+    
+    for (int y = -1; y < 2; y++)
+    {
+        for (int x = -1; x < 2; x++)
+        {
+            if (x == 0 && y == 0) continue;
+            
+            uint3 neighbour = uint3(id.x + x, id.y + y, 0);
+            
+            if (neighbour.x >= 0 && neighbour.x < _Resolution.x && neighbour.y >= 0 && neighbour.y < _Resolution.y)
+            {
+                count += GetType(neighbour);
+            }
+        }
+
+    }
+    
+    return count;
+}
+
 [numthreads(8,8,1)]
 void GameOfLife (uint3 id : SV_DispatchThreadID)
 {
     if (id.x >= _Resolution.x || id.y >= _Resolution.y) return;
     
-    int flatIndex = id.x + id.y * _Resolution.x;
+    int flatIndex = GetFlatIndex(id);
     
-    SetType(flatIndex, GetType(flatIndex) == 1 ? 0 : 1);
+    uint aliveNeighbourCount = GetAliveNeighbourCount(id);
+    bool wasAlive = _PreviousGrid[flatIndex] == 1;
+    
+    bool isAlive = aliveNeighbourCount == 3 || (wasAlive && aliveNeighbourCount == 2);
+    
+    SetType(flatIndex, isAlive);
 }
