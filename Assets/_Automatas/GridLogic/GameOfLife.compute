@@ -1,0 +1,25 @@
+#pragma kernel GameOfLife
+
+RWStructuredBuffer<uint> _Grid;
+StructuredBuffer<uint> _PreviousGrid;
+uint2 _Resolution;
+
+uint GetType(int flatIndex)
+{
+    return _PreviousGrid[flatIndex];
+}
+
+void SetType(int flatIndex, uint type)
+{
+    _Grid[flatIndex] = type;
+}
+
+[numthreads(8,8,1)]
+void GameOfLife (uint3 id : SV_DispatchThreadID)
+{
+    if (id.x >= _Resolution.x || id.y >= _Resolution.y) return;
+    
+    int flatIndex = id.x + id.y * _Resolution.x;
+    
+    SetType(flatIndex, GetType(flatIndex) == 1 ? 0 : 1);
+}

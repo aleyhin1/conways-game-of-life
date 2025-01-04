@@ -13,6 +13,11 @@ public class GridPresenter : MonoBehaviour
     private static readonly int _colorsID = Shader.PropertyToID("_Colors");
     private ComputeBuffer _colorBuffer;
 
+    private void Awake()
+    {
+        GridLogic.OnAutomataStarted += SetAutomataColor;
+    }
+
     private void Start()
     {
         ResizeModelFullScreen();
@@ -24,6 +29,11 @@ public class GridPresenter : MonoBehaviour
         _material.SetVector(_resolutionID, new Vector4(_data.Data.Resolution.x, _data.Data.Resolution.y, 0, 0));
         _material.SetBuffer(_gridID, _data.Data.GridBuffer);
         SetColorBuffer(0);
+    }
+
+    private void SetAutomataColor(AutomataTypes type)
+    {
+        SetColorBuffer(((int)type) + 1);
     }
 
     private void SetColorBuffer(int index)
@@ -57,8 +67,10 @@ public class GridPresenter : MonoBehaviour
         return new Vector4(bottomLeft.x, bottomLeft.y, topRight.x, topRight.y);
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
+        GridLogic.OnAutomataStarted -= SetAutomataColor;
+
         _colorBuffer.Dispose();
         _colorBuffer = null;
     }

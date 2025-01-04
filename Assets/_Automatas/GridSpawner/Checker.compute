@@ -1,5 +1,6 @@
 #pragma kernel FunctionKernel
 
+
 RWStructuredBuffer<uint> _Grid;
 uint2 _Resolution;
 

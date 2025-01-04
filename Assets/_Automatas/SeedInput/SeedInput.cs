@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SeedInput : MonoBehaviour
 {
+    public static Action OnSeedReady;
     [SerializeField] private ComputeShader _inputCompute;
     [SerializeField] private ComputeShader _initialStateCompute;
     [SerializeField] private GridDataSO _data;
@@ -27,6 +28,7 @@ public class SeedInput : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             TransformGridToInitialState();
+            OnSeedReady?.Invoke();
             Destroy(this.gameObject);
         }
         else

@@ -1,0 +1,17 @@
+#pragma kernel CSMain
+
+StructuredBuffer<uint> _Input;
+RWStructuredBuffer<uint> _Output;
+uint2 _Resolution;
+
+
+[numthreads(8,8,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+    if (id.x >= _Resolution.x || id.y >= _Resolution.y)
+        return;
+    
+    int flatIndex = id.x + id.y * _Resolution.x;
+    
+    _Output[flatIndex] = _Input[flatIndex];
+}
