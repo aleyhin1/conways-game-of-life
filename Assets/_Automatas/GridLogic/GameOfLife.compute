@@ -34,14 +34,13 @@ uint GetAliveNeighbourCount(uint3 id)
         {
             if (x == 0 && y == 0) continue;
             
-            uint3 neighbour = uint3(id.x + x, id.y + y, 0);
+            uint unboundX = (x + id.x + _Resolution.x) % _Resolution.x;
+            uint unboundY = (y + id.y + _Resolution.y) % _Resolution.y;
             
-            if (neighbour.x >= 0 && neighbour.x < _Resolution.x && neighbour.y >= 0 && neighbour.y < _Resolution.y)
-            {
-                count += GetType(neighbour);
-            }
+            uint3 neighbour = uint3(unboundX, unboundY, 0);
+            
+            count += GetType(neighbour);
         }
-
     }
     
     return count;

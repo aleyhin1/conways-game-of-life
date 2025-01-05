@@ -807,16 +807,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1688575997}
     m_Modifications:
-    - target: {fileID: 644489076325224216, guid: f058e6cda2155e741ad37b1bd0387d3b,
-        type: 3}
-      propertyPath: _resolution.x
-      value: 19200
-      objectReference: {fileID: 0}
-    - target: {fileID: 644489076325224216, guid: f058e6cda2155e741ad37b1bd0387d3b,
-        type: 3}
-      propertyPath: _resolution.y
-      value: 10800
-      objectReference: {fileID: 0}
     - target: {fileID: 920732843756968739, guid: f058e6cda2155e741ad37b1bd0387d3b,
         type: 3}
       propertyPath: m_Name
