@@ -26,6 +26,7 @@ public class SeedInput : MonoBehaviour
     private void Start()
     {
         UI.OnBackToSeed += SetSnapshot;
+        UI.OnStartAutomata += HandleSeed;
 
         _camera = Camera.main;
 
@@ -37,17 +38,15 @@ public class SeedInput : MonoBehaviour
     {
         if (!_canTakeInput) return;
 
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            GetSnapshot();
-            TransformGridToInitialState();
-            OnSeedReady?.Invoke();
-            _canTakeInput = false;
-        }
-        else
-        {
-            GetInput();
-        }
+        GetInput();
+    }
+
+    private void HandleSeed()
+    {
+        GetSnapshot();
+        TransformGridToInitialState();
+        OnSeedReady?.Invoke();
+        _canTakeInput = false;
     }
 
     private void GetInput()
@@ -124,6 +123,7 @@ public class SeedInput : MonoBehaviour
     private void OnDestroy()
     {
         UI.OnBackToSeed -= SetSnapshot;
+        UI.OnStartAutomata -= HandleSeed;
 
         _snapshotBuffer.Dispose();
         _snapshotBuffer = null;
