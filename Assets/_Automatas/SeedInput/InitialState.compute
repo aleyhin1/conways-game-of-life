@@ -11,7 +11,7 @@ void InitialState (uint3 id : SV_DispatchThreadID)
     
     int flatIndex = id.x + id.y * _Resolution.x;
     
-    bool isAlive = _Grid[flatIndex] == 3;
+    bool isAlive = _Grid[flatIndex] == 1;
     
     _Grid[flatIndex] = (uint)isAlive;
 }

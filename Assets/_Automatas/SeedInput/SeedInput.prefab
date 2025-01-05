@@ -47,4 +47,5 @@ MonoBehaviour:
   _inputCompute: {fileID: 7200000, guid: 0f5f9a01a9568014a969761424c3c250, type: 3}
   _initialStateCompute: {fileID: 7200000, guid: 1796fbcb20c7a0846a3b6d8e7e1295f9,
     type: 3}
+  _copyBufferCompute: {fileID: 7200000, guid: afc2ed1fd667ae246af66d55527114b7, type: 3}
   _data: {fileID: 11400000, guid: 734abe3340eb73940aab1efe049db740, type: 2}

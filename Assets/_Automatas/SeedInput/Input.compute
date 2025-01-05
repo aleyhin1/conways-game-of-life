@@ -19,10 +19,10 @@ void CSMain (uint3 id : SV_DispatchThreadID)
     
     bool isSomethingSelected = (int) _SelectedIndex.x >= 0 && (int) _SelectedIndex.y >= 0;
     bool isSelectedIndex = (isSomethingSelected) && ((uint)_SelectedIndex.x == id.x && (uint)_SelectedIndex.y == id.y);
-    bool wasSeed = _Grid[flatIndex] == 3;
+    bool wasSeed = _Grid[flatIndex] == 1;
     bool isSeed = isSelectedIndex ^ wasSeed;
     
     bool isHighlightIndex = id.x == _HighlightIndex.x && id.y == _HighlightIndex.y;
-    uint type = lerp(lerp(0, 2, isHighlightIndex), 3, isSeed);
+    uint type = lerp(lerp(0, 2, isHighlightIndex), 1, isSeed);
     SetType(flatIndex, type);
 }

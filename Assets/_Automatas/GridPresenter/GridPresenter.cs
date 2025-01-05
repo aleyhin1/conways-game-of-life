@@ -16,6 +16,7 @@ public class GridPresenter : MonoBehaviour
     private void Awake()
     {
         GridLogic.OnAutomataStarted += SetAutomataColor;
+        UI.OnBackToSeed += SetSeedColor;
     }
 
     private void Start()
@@ -28,12 +29,17 @@ public class GridPresenter : MonoBehaviour
     {
         _material.SetVector(_resolutionID, new Vector4(_data.Data.Resolution.x, _data.Data.Resolution.y, 0, 0));
         _material.SetBuffer(_gridID, _data.Data.GridBuffer);
-        SetColorBuffer(0);
+        SetSeedColor();
     }
 
     private void SetAutomataColor(AutomataTypes type)
     {
         SetColorBuffer(((int)type) + 1);
+    }
+
+    private void SetSeedColor()
+    {
+        SetColorBuffer(0);
     }
 
     private void SetColorBuffer(int index)
@@ -71,6 +77,7 @@ public class GridPresenter : MonoBehaviour
     private void OnDestroy()
     {
         GridLogic.OnAutomataStarted -= SetAutomataColor;
+        UI.OnBackToSeed -= SetSeedColor;
 
         _colorBuffer.Dispose();
         _colorBuffer = null;

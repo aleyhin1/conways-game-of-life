@@ -21,12 +21,10 @@ public class GridLogic : MonoBehaviour
     private static readonly int _resolutionID = Shader.PropertyToID("_Resolution");
     private static readonly int _inputID = Shader.PropertyToID("_Input");
     private static readonly int _outputID = Shader.PropertyToID("_Output");
-
-
-
     private void Awake()
     {
         SeedInput.OnSeedReady += StartLogic;
+        UI.OnBackToSeed += StopLogic;
     }
 
     private void Update()
@@ -53,6 +51,12 @@ public class GridLogic : MonoBehaviour
         SetComputeData();
 
         OnAutomataStarted?.Invoke(_type);
+    }
+
+    private void StopLogic()
+    {
+        DisposeComputeData();
+        _isRunning = false;
     }
 
     private void SetComputeData()
@@ -82,6 +86,7 @@ public class GridLogic : MonoBehaviour
     private void OnDestroy()
     {
         SeedInput.OnSeedReady -= StartLogic;
+        UI.OnBackToSeed -= StopLogic;
 
         DisposeComputeData();
     }
