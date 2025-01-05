@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &3486916056195594084
+--- !u!1 &3383568511306837055
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,22 +8,22 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6855529089119767942}
-  - component: {fileID: 3221087935725084069}
+  - component: {fileID: 4140514640888375467}
+  - component: {fileID: 2488350672414207764}
   m_Layer: 0
-  m_Name: GridLogic
+  m_Name: CameraMovement
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6855529089119767942
+--- !u!4 &4140514640888375467
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3486916056195594084}
+  m_GameObject: {fileID: 3383568511306837055}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
@@ -32,21 +32,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3221087935725084069
+--- !u!114 &2488350672414207764
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3486916056195594084}
+  m_GameObject: {fileID: 3383568511306837055}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 83636c297c5e6db478c21f9bd0bb7b5c, type: 3}
+  m_Script: {fileID: 11500000, guid: 25808530cc9b81a4e83345fe58b7ab6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _type: 0
-  _tickTime: 0.25
-  _computes:
-  - {fileID: 7200000, guid: e7eee16b439ac1341b6aaac3e4888596, type: 3}
-  _copyCompute: {fileID: 7200000, guid: afc2ed1fd667ae246af66d55527114b7, type: 3}
+  _scrollMaxRange: 20
+  _scrollMinRange: 0.5
+  _scrollSpeed: 0.01
   _data: {fileID: 11400000, guid: 734abe3340eb73940aab1efe049db740, type: 2}

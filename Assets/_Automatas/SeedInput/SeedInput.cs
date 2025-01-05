@@ -8,10 +8,10 @@ public class SeedInput : MonoBehaviour
     [SerializeField] private ComputeShader _inputCompute;
     [SerializeField] private ComputeShader _initialStateCompute;
     [SerializeField] private GridDataSO _data;
-    private Vector2 _screenResolution;
     private int2 _resolution;
     private int _groupX;
     private int _groupY;
+    private Camera _camera;
     private static readonly int _gridID = Shader.PropertyToID("_Grid");
     private static readonly int _resolutionID = Shader.PropertyToID("_Resolution");
     private static readonly int _highlightIndexID = Shader.PropertyToID("_HighlightIndex");
@@ -19,6 +19,8 @@ public class SeedInput : MonoBehaviour
 
     private void Start()
     {
+        _camera = Camera.main;
+
         SetInitialFields();
         SetInitialProperties();
     }
@@ -66,15 +68,15 @@ public class SeedInput : MonoBehaviour
 
     private Vector2 GetGridPosition(Vector3 position)
     {
-        float ratioX = _resolution.x / _screenResolution.x;
-        float ratioY = _resolution.y / _screenResolution.y;
-
-        return new Vector2(position.x * ratioX, position.y * ratioY);
+        RaycastHit hitInfo;
+        Physics.Raycast(_camera.ScreenPointToRay(position), out hitInfo);
+        Vector2 textureCoord = hitInfo.textureCoord;
+        Vector2 gridPosition = new Vector2(textureCoord.x * _resolution.x, textureCoord.y * _resolution.y);
+        return gridPosition;
     }
 
     private void SetInitialFields()
     {
-        _screenResolution = new Vector2(Screen.width, Screen.height);
         _resolution = _data.Data.Resolution;
         _groupX = Mathf.CeilToInt(_resolution.x / 8 + 1);
         _groupY = Mathf.CeilToInt(_resolution.y / 8 + 1);

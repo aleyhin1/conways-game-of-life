@@ -6,4 +6,5 @@ public class GridData
 {
     public ComputeBuffer GridBuffer;
     public int2 Resolution;
+    public Vector2 ModelBounds;
 }

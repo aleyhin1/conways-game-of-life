@@ -58,6 +58,7 @@ public class GridPresenter : MonoBehaviour
         float scaleY = screenPositions.w - screenPositions.y;
 
         _model.transform.localScale = new Vector3(scaleX, scaleY, 1);
+        _data.Data.ModelBounds = new Vector2(scaleX * .5f, scaleY * .5f);
     }
 
     private Vector4 GetScreenPositions()

@@ -1,13 +1,11 @@
 #pragma kernel FunctionKernel
 
-
 RWStructuredBuffer<uint> _Grid;
 uint2 _Resolution;
 
 uint GetType(uint3 id)
 {
-    bool isAlive = (id.x + id.y) % 2 == 0;
-    return lerp(0, 1, isAlive);
+    return 0;
 }
 
 void SetType(uint3 id, uint type)

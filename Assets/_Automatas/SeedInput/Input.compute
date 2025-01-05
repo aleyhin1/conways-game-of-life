@@ -5,12 +5,6 @@ uint2 _Resolution;
 uint2 _HighlightIndex;
 int2 _SelectedIndex;
 
-uint GetCheckerType(uint3 id)
-{
-    bool isAlive = (id.x + id.y) % 2 == 0;
-    return lerp(0, 1, isAlive);
-}
-
 void SetType(uint flatIndex, uint type)
 {
     _Grid[flatIndex] = type;
@@ -29,6 +23,6 @@ void CSMain (uint3 id : SV_DispatchThreadID)
     bool isSeed = isSelectedIndex ^ wasSeed;
     
     bool isHighlightIndex = id.x == _HighlightIndex.x && id.y == _HighlightIndex.y;
-    uint type = lerp(lerp(GetCheckerType(id), 2, isHighlightIndex), 3, isSeed);
+    uint type = lerp(lerp(0, 2, isHighlightIndex), 3, isSeed);
     SetType(flatIndex, type);
 }
