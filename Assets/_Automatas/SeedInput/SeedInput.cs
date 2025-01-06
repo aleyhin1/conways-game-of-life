@@ -5,6 +5,7 @@ using UnityEngine;
 public class SeedInput : MonoBehaviour
 {
     public static Action OnSeedReady;
+    private bool _canTakeInput = true;
     [SerializeField] private ComputeShader _inputCompute;
     [SerializeField] private ComputeShader _initialStateCompute;
     [SerializeField] private ComputeShader _copyBufferCompute;
@@ -13,7 +14,6 @@ public class SeedInput : MonoBehaviour
     private int _groupX;
     private int _groupY;
     private Camera _camera;
-    private bool _canTakeInput = true;
     private ComputeBuffer _snapshotBuffer;
     private static readonly int _gridID = Shader.PropertyToID("_Grid");
     private static readonly int _resolutionID = Shader.PropertyToID("_Resolution");
@@ -37,6 +37,7 @@ public class SeedInput : MonoBehaviour
     private void Update()
     {
         if (!_canTakeInput) return;
+        if (UIButton.IsOnUI) return;
 
         GetInput();
     }

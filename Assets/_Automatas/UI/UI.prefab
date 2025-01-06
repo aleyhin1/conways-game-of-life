@@ -223,8 +223,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ff0596621977d74f82ff6c683c99297, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _backButton: {fileID: 8872937981585840327}
-  _forwardButton: {fileID: 5145943288103512985}
+  _backButton: {fileID: 8698350276651492258}
+  _forwardButton: {fileID: 6643135547602187556}
 --- !u!1 &4472611415116703508
 GameObject:
   m_ObjectHideFlags: 0
@@ -312,6 +312,7 @@ GameObject:
   - component: {fileID: 3090062086436573471}
   - component: {fileID: 3224420984595672050}
   - component: {fileID: 8872937981585840327}
+  - component: {fileID: 8698350276651492258}
   m_Layer: 5
   m_Name: BackButton
   m_TagString: Untagged
@@ -360,7 +361,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Color: {r: 0.5245282, g: 0.29591307, b: 0.29591307, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -433,6 +434,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &8698350276651492258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5242963857038289067}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f147d664f4abb64faba6badafe2b8d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &9092511457883903628
 GameObject:
   m_ObjectHideFlags: 0
@@ -445,6 +458,7 @@ GameObject:
   - component: {fileID: 4133208324896409603}
   - component: {fileID: 3607029192714554488}
   - component: {fileID: 5145943288103512985}
+  - component: {fileID: 6643135547602187556}
   m_Layer: 5
   m_Name: ForwardButton
   m_TagString: Untagged
@@ -493,7 +507,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 1, b: 0, a: 1}
+  m_Color: {r: 0.39697394, g: 0.7132075, b: 0.39697394, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -566,3 +580,15 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!114 &6643135547602187556
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9092511457883903628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f147d664f4abb64faba6badafe2b8d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

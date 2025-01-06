@@ -8,8 +8,8 @@ public class UI : MonoBehaviour
 {
     public static Action OnBackToSeed;
     public static Action OnStartAutomata;
-    [SerializeField] private Button _backButton;
-    [SerializeField] private Button _forwardButton;
+    [SerializeField] private UIButton _backButton;
+    [SerializeField] private UIButton _forwardButton;
 
     public void BackButton()
     {
