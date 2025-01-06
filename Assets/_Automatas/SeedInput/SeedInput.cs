@@ -55,7 +55,7 @@ public class SeedInput : MonoBehaviour
         Vector3 mousePosition = Input.mousePosition;
         Vector2 selectedIndex;
 
-        if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonUp(0) && !CameraMovement.IsDraggedOnFrame)
         {
             selectedIndex = GetGridPosition(mousePosition);
         }

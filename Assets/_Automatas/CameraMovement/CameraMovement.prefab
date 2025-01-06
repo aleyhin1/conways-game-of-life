@@ -44,7 +44,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25808530cc9b81a4e83345fe58b7ab6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _scrollMaxRange: 20
-  _scrollMinRange: 0.5
-  _scrollSpeed: 0.01
+  _dragCooldownTime: 0.5
+  _dragTreshold: 0.02
   _data: {fileID: 11400000, guid: 734abe3340eb73940aab1efe049db740, type: 2}

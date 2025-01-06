@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour
 {
+    public static bool IsDraggedOnFrame;
+    [SerializeField] private float _dragCooldownTime;
+    [SerializeField] private float _dragTreshold;
     private float _scrollMaxRange;
     private float _scrollMinRange;
     private float _scrollSpeed;
     [SerializeField] private GridDataSO _data;
     private Vector2 _initialPosition;
     private Camera _camera;
+    private WaitForSeconds _wait;
 
     private void Start()
     {
         _camera = Camera.main;
+        _wait = new WaitForSeconds(_dragCooldownTime);
         SetInitialScrollValues();
     }
 
@@ -54,6 +59,20 @@ public class CameraMovement : MonoBehaviour
             new Vector3(_camera.transform.position.x + movementVector.x, _camera.transform.position.y + movementVector.y, _camera.transform.position.z);
 
         _initialPosition = targetPos;
+
+        if (movementAmount > _dragTreshold && !IsDraggedOnFrame)
+        {
+            StartCoroutine(DragCooldown());
+        }
+    }
+
+    private IEnumerator DragCooldown()
+    {
+        IsDraggedOnFrame = true;
+
+        yield return _wait;
+
+        IsDraggedOnFrame = false;
     }
 
     private void MovementClamp()
