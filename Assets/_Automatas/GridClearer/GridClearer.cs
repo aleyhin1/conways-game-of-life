@@ -14,7 +14,7 @@ public class GridClearer : MonoBehaviour
     private void Awake()
     {
         UI.OnClear += Clear;
-        RandomSeed.OnRandomSeed += DisableSelf;
+        HashSeed.OnRandomSeed += DisableSelf;
     }
 
     private void Start()
@@ -39,6 +39,6 @@ public class GridClearer : MonoBehaviour
     private void OnDestroy()
     {
         UI.OnClear -= Clear;
-        RandomSeed.OnRandomSeed -= DisableSelf;
+        HashSeed.OnRandomSeed -= DisableSelf;
     }
 }

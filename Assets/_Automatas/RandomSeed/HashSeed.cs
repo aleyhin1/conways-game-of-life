@@ -2,12 +2,13 @@ using System;
 using Unity.Mathematics;
 using UnityEngine;
 
-public class RandomSeed : MonoBehaviour
+public class HashSeed : MonoBehaviour
 {
     public static Action OnSeedReady;
     public static Action OnRandomSeed;
-    [SerializeField] private bool _isRandom;
+    [SerializeField] private bool _useHash;
     [SerializeField] private int _seed;
+    [SerializeField] private bool _useRandomSeed;
     [SerializeField] private ComputeShader _hashCompute;
     [SerializeField] private GridDataSO _data;
     private static readonly int _hashID = Shader.PropertyToID("_Hash");
@@ -17,7 +18,7 @@ public class RandomSeed : MonoBehaviour
 
     private void Start()
     {
-        if (!_isRandom) return;
+        if (!_useHash) return;
 
         OnRandomSeed?.Invoke();
         StartHash();
@@ -25,6 +26,8 @@ public class RandomSeed : MonoBehaviour
 
     private void StartHash()
     {
+        if (_useRandomSeed) _seed = UnityEngine.Random.Range(0, 2147483647);
+
         int2 resolution = _data.Data.Resolution;
         _hashCompute.SetBuffer(0, _hashID, _data.Data.GridBuffer);
         _hashCompute.SetVector(_resolutionID, new Vector4(resolution.x, resolution.y, 0, 0));

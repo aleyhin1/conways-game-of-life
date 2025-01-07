@@ -15,7 +15,7 @@ public class UI : MonoBehaviour
 
     private void Awake()
     {
-        RandomSeed.OnRandomSeed += DisableSelf;
+        HashSeed.OnRandomSeed += DisableSelf;
     }
 
     public void BackButton()
@@ -46,6 +46,6 @@ public class UI : MonoBehaviour
 
     private void OnDestroy()
     {
-        RandomSeed.OnRandomSeed -= DisableSelf;
+        HashSeed.OnRandomSeed -= DisableSelf;
     }
 }

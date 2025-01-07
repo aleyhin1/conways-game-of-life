@@ -26,7 +26,7 @@ public class SeedInput : MonoBehaviour
     {
         UI.OnBackToSeed += SetSnapshot;
         UI.OnStartAutomata += HandleSeed;
-        RandomSeed.OnRandomSeed += DisableSelf;
+        HashSeed.OnRandomSeed += DisableSelf;
     }
 
 
@@ -136,7 +136,7 @@ public class SeedInput : MonoBehaviour
     {
         UI.OnBackToSeed -= SetSnapshot;
         UI.OnStartAutomata -= HandleSeed;
-        RandomSeed.OnRandomSeed -= DisableSelf;
+        HashSeed.OnRandomSeed -= DisableSelf;
 
         _snapshotBuffer?.Dispose();
         _snapshotBuffer = null;

@@ -17,7 +17,7 @@ public class CameraMovement : MonoBehaviour
 
     private void Awake()
     {
-        RandomSeed.OnRandomSeed += DisableSelf;
+        HashSeed.OnRandomSeed += DisableSelf;
     }
 
     private void Start()
@@ -110,6 +110,6 @@ public class CameraMovement : MonoBehaviour
 
     private void OnDestroy()
     {
-        RandomSeed.OnRandomSeed -= DisableSelf;
+        HashSeed.OnRandomSeed -= DisableSelf;
     }
 }

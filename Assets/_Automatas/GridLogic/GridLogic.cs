@@ -24,7 +24,7 @@ public class GridLogic : MonoBehaviour
 
     private void Awake()
     {
-        RandomSeed.OnSeedReady += StartLogic;
+        HashSeed.OnSeedReady += StartLogic;
         SeedInput.OnSeedReady += StartLogic;
         UI.OnBackToSeed += StopLogic;
     }
@@ -89,7 +89,7 @@ public class GridLogic : MonoBehaviour
     {
         SeedInput.OnSeedReady -= StartLogic;
         UI.OnBackToSeed -= StopLogic;
-        RandomSeed.OnSeedReady -= StartLogic;
+        HashSeed.OnSeedReady -= StartLogic;
 
         DisposeComputeData();
     }
