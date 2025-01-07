@@ -1,0 +1,49 @@
+#pragma kernel Hash
+
+static const uint primeA = 0x9E3779B1;
+static const uint primeB = 0x85EBCA77;
+static const uint primeC = 0xC2B2AE3D;
+static const uint primeD = 0x27D4EB2F;
+static const uint primeE = 0x165667B1;
+RWStructuredBuffer<uint> _Hash;
+uint2 _Resolution;
+int _Seed;
+
+uint RotateLeft(uint data, int steps)
+{
+    return (data << steps) | (data >> 32 - steps);
+}
+
+uint Eat(int data, int accumulator)
+{
+    return RotateLeft(accumulator + (uint) data * primeC, 17) * primeD;
+}
+
+uint Avalanche(uint accumulator)
+{
+    accumulator ^= accumulator >> 15;
+    accumulator *= primeB;
+    accumulator ^= accumulator >> 13;
+    accumulator *= primeC;
+    accumulator ^= accumulator >> 16;
+    return accumulator;
+}
+
+
+[numthreads(8,8,1)]
+void Hash (uint3 id : SV_DispatchThreadID)
+{
+    if (id.x >= _Resolution.x || id.y >= _Resolution.y) return;
+    
+    uint flatIndex = id.x + id.y * _Resolution.x;
+    
+    uint accumulator;
+    accumulator = (uint) _Seed + primeE;
+    
+    accumulator = Eat(id.x, accumulator);
+    accumulator = Eat(id.y, accumulator);
+    
+    accumulator = Avalanche(accumulator);
+    
+    _Hash[flatIndex] = accumulator % 2;
+}

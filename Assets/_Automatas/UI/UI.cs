@@ -13,6 +13,11 @@ public class UI : MonoBehaviour
     [SerializeField] private UIButton _forwardButton;
     [SerializeField] private UIButton _clearButton;
 
+    private void Awake()
+    {
+        RandomSeed.OnRandomSeed += DisableSelf;
+    }
+
     public void BackButton()
     {
         _backButton.gameObject.SetActive(false);
@@ -32,5 +37,15 @@ public class UI : MonoBehaviour
     public void ClearButton()
     {
         OnClear?.Invoke();
+    }
+
+    private void DisableSelf()
+    {
+        gameObject.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        RandomSeed.OnRandomSeed -= DisableSelf;
     }
 }

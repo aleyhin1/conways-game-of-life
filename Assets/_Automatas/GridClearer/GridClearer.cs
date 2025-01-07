@@ -14,6 +14,7 @@ public class GridClearer : MonoBehaviour
     private void Awake()
     {
         UI.OnClear += Clear;
+        RandomSeed.OnRandomSeed += DisableSelf;
     }
 
     private void Start()
@@ -30,8 +31,14 @@ public class GridClearer : MonoBehaviour
         _clearCompute.Dispatch(0, _groupX, _groupY, 1);
     }
 
+    private void DisableSelf()
+    {
+        gameObject.SetActive(false);
+    }
+
     private void OnDestroy()
     {
         UI.OnClear -= Clear;
+        RandomSeed.OnRandomSeed -= DisableSelf;
     }
 }

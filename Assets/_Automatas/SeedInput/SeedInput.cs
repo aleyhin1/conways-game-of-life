@@ -22,12 +22,16 @@ public class SeedInput : MonoBehaviour
     private static readonly int _inputID = Shader.PropertyToID("_Input");
     private static readonly int _outputID = Shader.PropertyToID("_Output");
 
-
-    private void Start()
+    private void Awake()
     {
         UI.OnBackToSeed += SetSnapshot;
         UI.OnStartAutomata += HandleSeed;
+        RandomSeed.OnRandomSeed += DisableSelf;
+    }
 
+
+    private void Start()
+    {
         _camera = Camera.main;
 
         SetInitialFields();
@@ -41,6 +45,8 @@ public class SeedInput : MonoBehaviour
 
         GetInput();
     }
+
+    
 
     private void HandleSeed()
     {
@@ -70,6 +76,11 @@ public class SeedInput : MonoBehaviour
         _inputCompute.SetVector(_selectedIndexID, new Vector4(selectedIndex.x, selectedIndex.y, 0, 0));
 
         _inputCompute.Dispatch(0, _groupX, _groupY, 1);
+    }
+
+    private void DisableSelf()
+    {
+        gameObject.SetActive(false);
     }
 
     private void SetSnapshot()
@@ -125,8 +136,9 @@ public class SeedInput : MonoBehaviour
     {
         UI.OnBackToSeed -= SetSnapshot;
         UI.OnStartAutomata -= HandleSeed;
+        RandomSeed.OnRandomSeed -= DisableSelf;
 
-        _snapshotBuffer.Dispose();
+        _snapshotBuffer?.Dispose();
         _snapshotBuffer = null;
     }
 }

@@ -15,6 +15,11 @@ public class CameraMovement : MonoBehaviour
     private Camera _camera;
     private WaitForSeconds _wait;
 
+    private void Awake()
+    {
+        RandomSeed.OnRandomSeed += DisableSelf;
+    }
+
     private void Start()
     {
         _camera = Camera.main;
@@ -96,5 +101,15 @@ public class CameraMovement : MonoBehaviour
         _scrollMinRange = (_data.Data.ModelBounds.y / (_data.Data.Resolution.y * .5f)) * 10;
         _camera.orthographicSize = _scrollMinRange;
         _scrollSpeed = _scrollMinRange;
+    }
+
+    private void DisableSelf()
+    {
+        gameObject.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        RandomSeed.OnRandomSeed -= DisableSelf;
     }
 }
