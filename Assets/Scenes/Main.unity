@@ -825,10 +825,25 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3041772233490142805, guid: bc8ce5666a79eee44a20a7c8e5a4a289,
+        type: 3}
+      propertyPath: _useHash
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3041772233490142805, guid: bc8ce5666a79eee44a20a7c8e5a4a289,
+        type: 3}
+      propertyPath: _useRandomSeed
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4225247552577789628, guid: bc8ce5666a79eee44a20a7c8e5a4a289,
         type: 3}
       propertyPath: m_Name
       value: RandomSeed
+      objectReference: {fileID: 0}
+    - target: {fileID: 4225247552577789628, guid: bc8ce5666a79eee44a20a7c8e5a4a289,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -1121,6 +1136,16 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1688575997}
     m_Modifications:
+    - target: {fileID: 644489076325224216, guid: f058e6cda2155e741ad37b1bd0387d3b,
+        type: 3}
+      propertyPath: _resolution.x
+      value: 1920
+      objectReference: {fileID: 0}
+    - target: {fileID: 644489076325224216, guid: f058e6cda2155e741ad37b1bd0387d3b,
+        type: 3}
+      propertyPath: _resolution.y
+      value: 1080
+      objectReference: {fileID: 0}
     - target: {fileID: 920732843756968739, guid: f058e6cda2155e741ad37b1bd0387d3b,
         type: 3}
       propertyPath: m_Name
